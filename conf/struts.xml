@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- base configuration -->
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.convention.exclude.packages"
+		value="fastweb.udap.web.action.*" />
+	<constant name="struts.convention.default.parent.package"
+		value="json-default" />
+	<!--<constant name="struts.convention.package.locators.disable"
+		value="true" />  -->
+
+	<!-- 全局包，继承json全局包 -->
+	<package name="fastweb-default"
+		extends="json-default,convention-default">
+		 <global-results>
+			
+			<result name="input">/error.jsp</result>
+			<result name="fail">/error.jsp</result>
+			<result name="error" type="redirect">/error.jsp</result>
+			
+			</global-results>
+		
+	</package>
+
+	<package name="cdnlog" namespace="/cdnlog"
+		extends="fastweb-default">
+		<action name="bigdataQuery"
+			class="fastweb.udap.web.action.BigdataQueryAction" />
+	</package>
+
+</struts>
+

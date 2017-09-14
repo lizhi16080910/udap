@@ -1,0 +1,19 @@
+{
+  "size": 0,
+  "aggs": {
+     "group_by_value": {
+	      "range": {
+	        "field": "time",
+	        "ranges": [{"from": $start, "to": $end }]
+	       },  
+	       "aggs": { 
+		      "group_by_time": {
+		         "terms": {"field": $time},
+		         "aggs": {
+		           "sum_value": {"sum": {"field": "value"}}
+		         }
+		       } 
+		  }  
+	  }	     
+   }
+}
